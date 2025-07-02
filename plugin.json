@@ -1,0 +1,33 @@
+{
+  "SchemaVersion": "0.1.0",
+  "Vendor": "BitChisel",
+  "Version": "0.1.0",
+  "ShortDescription": "Human-readable format for Docker container listings",
+  "Description": "A Docker CLI plugin that provides more human-friendly container listings with enhanced formatting of docker ps output",
+  "Usage": {
+    "Description": "A more human-readable format for docker ps output",
+    "Flags": [
+      {
+        "Name": "watch",
+        "Shorthand": "w",
+        "Usage": "Watch mode: continuously update container status"
+      },
+      {
+        "Name": "help",
+        "Shorthand": "h",
+        "Usage": "Show help information"
+      },
+      {
+        "Name": "v",
+        "Usage": "Show verbose output (detailed information)"
+      }
+    ],
+    "Example": "docker psa -w"
+  },
+  "Binaries": [
+    {
+      "Name": "docker-cli-plugin-psa",
+      "Path": "/usr/local/bin/docker-cli-plugin-psa"
+    }
+  ]
+}

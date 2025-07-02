@@ -1,0 +1,73 @@
+{
+  "branches": ["main"],
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "releaseRules": [
+          { "type": "feat", "release": "minor" },
+          { "type": "fix", "release": "patch" },
+          { "type": "perf", "release": "patch" },
+          { "type": "docs", "release": "patch" },
+          { "type": "refactor", "release": "patch" },
+          { "type": "style", "release": false },
+          { "type": "test", "release": false },
+          { "type": "build", "release": false },
+          { "type": "ci", "release": false },
+          { "type": "chore", "release": false },
+          { "breaking": true, "release": "major" }
+        ]
+      }
+    ],
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "sed -i 's/\"Version\": \"[^\"]*\"/\"Version\": \"${nextRelease.version}\"/' plugin.json"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "failComment": false,
+        "failTitle": false,
+        "successComment": false,
+        "assets": [
+          {
+            "path": "release-artifacts/docker-psa-linux-amd64",
+            "name": "docker-psa-linux-amd64",
+            "label": "Docker PSA Linux AMD64"
+          },
+          {
+            "path": "release-artifacts/docker-psa-darwin-amd64",
+            "name": "docker-psa-darwin-amd64",
+            "label": "Docker PSA macOS AMD64"
+          },
+          {
+            "path": "release-artifacts/docker-psa-darwin-arm64",
+            "name": "docker-psa-darwin-arm64",
+            "label": "Docker PSA macOS ARM64 (Apple Silicon)"
+          },
+          {
+            "path": "release-artifacts/docker-psa-windows-amd64.exe",
+            "name": "docker-psa-windows-amd64.exe",
+            "label": "Docker PSA Windows AMD64"
+          }
+        ]
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["CHANGELOG.md", "plugin.json"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
+  ]
+}

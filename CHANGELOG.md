@@ -1,0 +1,27 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Features
+- Enhanced container output formatting with color-coded status indicators
+- Multiple verbosity levels (-v, -vv) for different levels of detail
+- Watch mode (-w) that continuously updates container status
+- Support for filtering containers by name or image using regex
+- Human-readable time and duration formatting
+- Color-coded output using lipgloss styling
+
+### Documentation
+- Added comprehensive README with usage examples
+- Created contributing guidelines with conventional commit format
+- Set up automated changelog generation
+
+### CI/CD
+- Configured GitLab CI/CD pipeline with semantic release
+- Added GitHub Actions workflow for cross-platform compatibility
+- Automated multi-platform binary builds (Linux, macOS, Windows)
+- Integrated semantic versioning and release automation

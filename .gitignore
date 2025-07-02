@@ -1,0 +1,61 @@
+# Build directory (all build artifacts)
+build/
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Dependency directories
+vendor/
+
+# Python virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Go workspace file
+go.work
+
+# Project-specific binary
+/docker-psa
+
+# VSCode files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker artifacts
+*.tar
+
+# Build artifacts for different platforms
+docker-psa-linux-*
+docker-psa-darwin-*
+docker-psa-windows-*
+dist/
+build/
+
+# Semantic release artifacts (GitHub Actions)
+build.env
+
+# Temporary files
+*.swp
+*.swo
+*~
