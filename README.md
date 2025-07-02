@@ -1,31 +1,6 @@
 # Docker PSA - Human Readable Container Listings
 
-A Docker CLI plugin that provides a more human-readable format for container listings, enhancing the out### Download Pre-built Binaries
-
-You ## CI/CD Pipeline
-
-The project uses GitHub Actions for:
-
-- **Testing** - Automated tests on multiple Go versions
-- **Code Quality** - Format checking, vetting, and linting
-- **Multi-Platform Builds** - Cross-compilation for different OS/architectures
-- **Semantic Versioning** - Automated version management
-- **GitHub Releases** - Automatic releases with build artifacts
-
-### Release Process
-
-- **Automatic Versioning** - Version numbers determined by conventional commit messages
-- **Multi-Platform Builds** - Binaries built for Linux, macOS, and Windows
-- **Release Notes** - Changelog automatically generated from commits
-- **GitHub Releases** - Release assets uploaded automaticallye-built binaries from the GitHub releases page:
-
-- **GitHub**: [Releases](https://github.com/username/docker-psa/releases) *(Update with your GitHub URL)*
-
-Available binaries:
-- `docker-psa-linux-amd64` - Linux x86_64
-- `docker-psa-darwin-amd64` - macOS Intel
-- `docker-psa-darwin-arm64` - macOS Apple Silicon
-- `docker-psa-windows-amd64.exe` - Windows x86_64er ps`.
+A Docker CLI plugin that provides a more human-readable format for container listings, enhancing the standard `docker ps` output.
 
 ## Features
 
@@ -40,64 +15,49 @@ Available binaries:
 
 ## Installation
 
-### Building from Source
+### Option 1: Download Pre-built Binary (Recommended)
 
-1. Clone this repository
+1. Download the appropriate binary for your platform from [GitHub Releases](https://github.com/agkunz/docker-psa/releases):
+   - `docker-psa-linux-amd64` - Linux x86_64
+   - `docker-psa-darwin-amd64` - macOS Intel
+   - `docker-psa-darwin-arm64` - macOS Apple Silicon
+   - `docker-psa-windows-amd64.exe` - Windows x86_64
+
+2. Create the Docker CLI plugins directory:
 ```bash
-git clone git@github.com:agkunz/docker-psa.git
-cd docker-psa
+mkdir -p ~/.docker/cli-plugins
 ```
 
-2. Build and install the plugin using the Makefile
+3. Move the binary to the plugins directory and make it executable:
 ```bash
-make install
+# Linux/macOS
+mv docker-psa-* ~/.docker/cli-plugins/docker-psa
+chmod +x ~/.docker/cli-plugins/docker-psa
+
+# Windows (PowerShell)
+Move-Item docker-psa-windows-amd64.exe $env:USERPROFILE\.docker\cli-plugins\docker-psa.exe
 ```
 
-This will:
-- Build the plugin to the `build/` directory
-- Create the Docker CLI plugins directory if it doesn't exist
-- Copy the binary to the Docker CLI plugins directory (`~/.docker/cli-plugins/`)
-- Set appropriate permissions
-
-3. Verify the plugin is installed:
+4. Verify the plugin is installed:
 ```bash
 docker psa --help
 ```
 
-### Development Setup
+### Option 2: Build from Source
 
-For contributors, set up the development environment:
-
+1. Clone and build:
 ```bash
-# Install development tools and git hooks
-make dev-setup
-
-# Run format checks and linting
-make format-check
-
-# Format code
-make format
+git clone git@github.com:agkunz/docker-psa.git
+cd docker-psa
+make install
 ```
 
-**Note:** The development setup automatically creates a Python virtual environment (`.venv`) for pre-commit hooks. This directory is excluded from git and will be created locally on each developer's machine.
-
-### Build Options
-
+2. Verify installation:
 ```bash
-# Basic build (outputs to build/ directory)
-make build
-
-# Cross-compile for all platforms
-make build-all
-
-# Individual platform builds
-make build-linux    # Linux AMD64
-make build-darwin   # macOS (both Intel and Apple Silicon)
-make build-windows  # Windows AMD64
-
-# Clean build artifacts
-make clean
+docker psa --help
 ```
+
+For detailed development setup instructions, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Usage
 
@@ -185,77 +145,7 @@ The plugin uses different indicators for container health status:
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### Quick Start for Contributors
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feat/your-feature-name`
-3. Make your changes following our coding standards
-4. Use conventional commit messages (e.g., `feat: add new feature`)
-5. Run tests: `go test ./...`
-6. Submit a pull request
-
-### Commit Message Format
-
-We use [Conventional Commits](https://www.conventionalcommits.org/) for automated versioning:
-
-- `feat:` - New features (minor version bump)
-- `fix:` - Bug fixes (patch version bump)
-- `feat!:` or `fix!:` - Breaking changes (major version bump)
-- `docs:`, `style:`, `refactor:`, `test:`, `chore:` - Other changes
-
-## Releases
-
-Releases are automated using semantic-release. When commits are pushed to the main branch:
-
-1. **Automatic Versioning** - Version numbers are determined by commit messages
-2. **Multi-Platform Builds** - Binaries are built for Linux, macOS, and Windows
-3. **Release Notes** - Changelog is automatically generated
-4. **GitHub/GitLab Releases** - Release assets are uploaded automatically
-
-### Download Pre-built Binaries
-
-You can download pre-built binaries from the releases page on either platform:
-
-- **GitLab**: [Releases](../../releases)
-- **GitHub**: [Releases](https://github.com/username/docker-psa/releases) *(Update with your GitHub URL)*
-
-Available binaries:
-- `docker-psa-linux-amd64` - Linux x86_64
-- `docker-psa-darwin-amd64` - macOS Intel
-- `docker-psa-darwin-arm64` - macOS Apple Silicon
-- `docker-psa-windows-amd64.exe` - Windows x86_64
-
-## GitHub Workflow
-
-This project uses GitHub for hosting and CI/CD:
-
-### Quick GitHub Setup
-
-```bash
-# Setup GitHub remote (if not already configured)
-make setup-github
-
-# Push changes to GitHub
-make push
-```
-
-## CI/CD Pipeline
-
-The project uses both GitLab CI/CD and GitHub Actions for:
-
-- **Testing** - Automated tests on multiple Go versions
-- **Code Quality** - Format checking, vetting, and linting
-- **Multi-Platform Builds** - Cross-compilation for different OS/architectures
-- **Semantic Versioning** - Automated version management
-- **Dual Releases** - Automatic releases on both GitLab and GitHub
-
-### Platform-Specific Features
-
-- **GitLab CI**: Uses `.releaserc.json` and GitLab's integrated CI/CD
-- **GitHub Actions**: Uses `.releaserc.github.json` and GitHub's workflow system
-- **Synchronized**: Both platforms get the same version numbers and release notes
+Interested in contributing? Check out [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, build instructions, and contribution guidelines.
 
 ## License
 

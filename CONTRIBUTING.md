@@ -1,12 +1,63 @@
 # Contributing to Docker PSA
 
-Thank you for your interest in contributing to Docker PSA! This3. **Make Changes**
+Thank you for your interest in contributing to Docker PSA! This guide provides guidelines for contributing to the project.
+
+## Development Setup
+
+### Prerequisites
+- Go 1.23 or later
+- Docker (for testing the plugin)
+- Git
+
+### Clone and Setup
+```bash
+git clone git@github.com:agkunz/docker-psa.git
+cd docker-psa
+go mod download
+make dev-setup  # Install Go tools and set up git hooks
+```
+
+### GitHub Setup (Optional)
+```bash
+# Setup GitHub remote if not already configured
+make setup-github
+```
+
+### Build and Test
+```bash
+make build        # Build to build/ directory
+make install      # Install the plugin locally
+docker psa        # Test the plugin
+
+# Cross-platform builds
+make build-all    # Build for all platforms
+
+# Individual platform builds
+make build-linux    # Linux AMD64
+make build-darwin   # macOS (both Intel and Apple Silicon)
+make build-windows  # Windows AMD64
+
+# Clean up
+make clean        # Remove build artifacts
+```
+
+### Development Environment Notes
+
+The development setup automatically creates a Python virtual environment (`.venv`) for pre-commit hooks. This directory is excluded from git and will be created locally on each developer's machine.
+
+## Development Workflow
+
+1. **Fork and Branch**
+   - Fork the repository
+   - Create a feature branch: `git checkout -b feat/your-feature-name`
+
+2. **Make Changes**
    - Write code following Go best practices
    - Add tests for new functionality
    - Ensure all tests pass: `go test ./...`
    - Format code: `go fmt ./...` (automatically done by git hooks)
 
-4. **Commit**
+3. **Commit**
    - Use conventional commit messages (enforced by git hooks)
    - Git hooks will automatically:
      - Format your Go code
@@ -14,40 +65,12 @@ Thank you for your interest in contributing to Docker PSA! This3. **Make Changes
      - Tidy go.mod/go.sum
      - Run quick tests
      - Validate commit message format
-   - Make atomic commits (one logical change per commit) provides guidelines for contributing to the project.
+   - Make atomic commits (one logical change per commit)
 
-## Development Setup
-
-1. **Prerequisites**
-   - Go 1.23 or later
-   - Docker (for testing the plugin)
-   - Git
-
-2. **Clone and Setup**
-   ```bash
-   git clone <repository-url>
-   cd docker-psa
-   go mod download
-   make dev-setup  # Install Go tools and set up git hooks
-   ```
-
-3. **GitHub Setup** (Optional)
-   ```bash
-   # Setup GitHub remote if not already configured
-   make setup-github
-   ```
-
-4. **Build and Test**
-   ```bash
-   make build        # Build to build/ directory
-   make install      # Install the plugin locally
-   docker psa        # Test the plugin
-
-   # Cross-platform builds
-   make build-all    # Build for all platforms
-
-   # Clean up
-   make clean        # Remove build artifacts
+4. **Submit Pull Request**
+   - Push to your fork: `git push origin feature-branch`
+   - Create a pull request on GitHub with a clear description
+   - Link any related issues
    ```
 
 ## Commit Message Convention
@@ -132,12 +155,37 @@ Releases are automated using semantic-release:
 - **Minor Release** (0.1.0 → 0.2.0): `feat:`
 - **Major Release** (0.1.0 → 1.0.0): `feat!:`, `fix!:`, or any commit with `BREAKING CHANGE:` in the footer
 
-The CI/CD pipeline will:
-1. Run tests
-2. Build binaries for multiple platforms
-3. Generate changelog
-4. Create GitHub/GitLab release
-5. Upload build artifacts
+### Automated Release Pipeline
+
+When commits are pushed to the main branch, the CI/CD pipeline will:
+
+1. **Automatic Versioning** - Version numbers determined by conventional commit messages
+2. **Multi-Platform Builds** - Binaries built for Linux, macOS, and Windows
+3. **Release Notes** - Changelog automatically generated from commits
+4. **GitHub Releases** - Release assets uploaded automatically
+
+The pipeline uses both GitLab CI/CD and GitHub Actions for:
+- **Testing** - Automated tests on multiple Go versions
+- **Code Quality** - Format checking, vetting, and linting
+- **Multi-Platform Builds** - Cross-compilation for different OS/architectures
+- **Semantic Versioning** - Automated version management
+- **Dual Releases** - Automatic releases on both GitLab and GitHub
+
+### Platform-Specific Features
+
+- **GitLab CI**: Uses `.releaserc.json` and GitLab's integrated CI/CD
+- **GitHub Actions**: Uses `.releaserc.github.json` and GitHub's workflow system
+- **Synchronized**: Both platforms get the same version numbers and release notes
+
+### GitHub Workflow Commands
+
+```bash
+# Setup GitHub remote (if not already configured)
+make setup-github
+
+# Push changes to GitHub
+make push
+```
 
 ## Code Style
 
