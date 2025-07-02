@@ -1,3 +1,10 @@
+# 1.0.0 (2025-07-02)
+
+
+### Features
+
+* f1rst p0st ([b9358b5](https://github.com/agkunz/docker-psa/commit/b9358b53e1a9aa4af24b0e74319083535b956853))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

@@ -1,7 +1,7 @@
 {
   "SchemaVersion": "0.1.0",
   "Vendor": "BitChisel",
-  "Version": "0.1.0",
+  "Version": "1.0.0",
   "ShortDescription": "Human-readable format for Docker container listings",
   "Description": "A Docker CLI plugin that provides more human-friendly container listings with enhanced formatting of docker ps output",
   "Usage": {
