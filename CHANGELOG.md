@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/agkunz/docker-psa/compare/v1.0.0...v1.0.1) (2025-07-02)
+
+
+### Bug Fixes
+
+* updated readme ([87c590c](https://github.com/agkunz/docker-psa/commit/87c590cdc8d3d05c8a2bb3ba78bde82993365941))
+
 # 1.0.0 (2025-07-02)
 
 
